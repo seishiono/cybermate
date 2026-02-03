@@ -1,0 +1,69 @@
+---
+
+---
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2023- CyberMate LLC</p>
+  </div>
+</footer>
+
+<a href="#home" class="back-to-top" aria-label="トップへ戻る">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</a>
+
+<style>
+  .footer {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--spacing-md) 0;
+    text-align: center;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  .back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .back-to-top:hover {
+    background: var(--color-accent-light);
+    transform: translateY(-3px);
+  }
+</style>
+
+<script>
+  const backToTop = document.querySelector('.back-to-top');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTop?.classList.add('visible');
+    } else {
+      backToTop?.classList.remove('visible');
+    }
+  });
+</script>

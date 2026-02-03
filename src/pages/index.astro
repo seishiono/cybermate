@@ -1,0 +1,490 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const teamMembers = [
+  { name: '小野 成志', nameEn: 'Seishi Ono', role: 'CEO', image: '/images/team/seishi-ono.png' },
+  { name: '笠間 和喜', nameEn: 'Kazuki Kasama', role: 'CFO / Services Strategist', image: '/images/team/kazuki-kasama.png' },
+  { name: '三澤有美', nameEn: 'Yumi Misawa', role: 'Admin & Customer Specialist', image: '/images/team/yumi-misawa.png' },
+  { name: '谷藤 幹子', nameEn: 'Mikiko Tanifuji', role: 'Research Advisor / Scholarly Publishing Specialist', image: '/images/team/mikiko-tanifuji.png' },
+  { name: 'ディーブ 冴', nameEn: 'Dieb Sae', role: 'Research Advisor / Data Scientist', image: '/images/team/dieb-sae.png' },
+];
+
+const partners = [
+  { name: 'Paul Walk', org: 'AntLeaf Ltd.', role: 'IT Consultant / Service Design Founder', desc: 'オープン・リポジトリの開発・実装経験が長いイギリスを拠点とするベンダー', image: '/images/partners/paul-walk.png' },
+  { name: 'Luca Foppiano', org: 'ScienciaLAB', role: 'AI Engineer / TDM, LLM', desc: '論文・特許の本文を対象とした言語処理からAI構築まで科学情報を扱うディベロッパー', image: '/images/partners/luca-foppiano.png' },
+  { name: '永井裕子', org: 'NPO ScholAgora', role: 'Learned Society Publisher', desc: 'SPARC Japanにより設立された日本の学術ジャーナル出版NPO法人, オンラインジャーナルのパイオニア', image: '/images/partners/yuko-nagai.png' },
+];
+
+const proposals = [
+  {
+    num: 1,
+    title: '"適切なライセンスでサイエンス"',
+    subtitle: '出版社や著者との契約・規約をサポートする',
+    proposal: 'ジャーナルや学会誌の掲載論文を、研究利用のためにデータ購入したいときの出版社や学会との利用ライセンス、図書館でのライセンス契約や転換後のポートフォリオ分析の実現に向けて調査、調整、交渉のお手伝をします。',
+    usage: '学会ジャーナルを刊行する際の販売モデル、図書館での購読モデル、研究者の研究費負担を、論文出版費用(Article Processing Charges)の負担によって目指す完全オープンアクセスの学術情報流通の世界を会員制セミナーを通じて一緒に考えませんか。',
+    image: '/images/proposals/pic3.png',
+  },
+  {
+    num: 2,
+    title: '"研究トピックスで著者ネットワーク"',
+    subtitle: 'オープンデータを使って人の繋がりを可視化する',
+    proposal: '学会誌に掲載した論文から論文作者や要旨を対象に、大規模自然言語処理のアルゴリズムを適用して研究トピックスを抽出し、著者と紐づけ、ほか論文間の繋がりから著者ネットワークを作ります。',
+    usage: '学会や研究会を主宰する時、学会会員の最近研究や学会誌記事を出典として自然言語処理により作成されたプロフィールから探す機能を開発支援します。',
+    image: '/images/proposals/pic1.png',
+  },
+  {
+    num: 3,
+    title: '"できることからオープンに"',
+    subtitle: 'オープンアクセス化を支援する',
+    proposal: '論文や研究データの公開からリポジトリ出版まで、"公開する"ことのノウハウをコンサルティングします。例）大学や企業での紀要や定期レポートの出版ノウハウ　例）学会に若手が参加して繋がるオープンプラットフォーム',
+    usage: '出版費用(Article Processing Charges)の拠出を定量的にみることができます。',
+    image: '/images/proposals/pic2.png',
+  },
+];
+---
+
+<Layout title="トップページ">
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <img src="/images/firstimg.png" alt="CyberMate" class="hero-image" />
+          <p class="hero-text">
+            CyberMate LLCは、日本の学術界において日進月歩に深化するウェブサービスを活用して、<br />
+            次世代へ向かうアイデアを取り込んだ学術情報流通サービスの企画・設計、開発支援をミッションとしています。<br />
+            学会発表・論文投稿・論文出版、そしてオープンアクセスに公開された論文情報を<br />
+            最大限に活用するデジタルなオープンサイエンスの取り組みをサポートします。
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Our Proposals Section -->
+    <section id="ourproposals" class="section proposals-section">
+      <div class="container">
+        <h2 class="section-title">
+          Our proposals
+          <span class="section-subtitle">提案するサービス</span>
+        </h2>
+        
+        <div class="proposals">
+          {proposals.map((item, index) => (
+            <div class={`proposal-item ${index % 2 === 1 ? 'reverse' : ''}`}>
+              <div class="proposal-content">
+                <span class="proposal-num">{item.num}</span>
+                <h3>{item.title}</h3>
+                <p class="proposal-subtitle">ー {item.subtitle}</p>
+                <div class="proposal-detail">
+                  <h4>提案</h4>
+                  <p>{item.proposal}</p>
+                </div>
+                <div class="proposal-detail">
+                  <h4>活用</h4>
+                  <p>{item.usage}</p>
+                </div>
+              </div>
+              <div class="proposal-image">
+                <img src={item.image} alt={item.title} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- About Us Section -->
+    <section id="aboutus" class="section aboutus-section">
+      <div class="container">
+        <h2 class="section-title">
+          About us
+          <span class="section-subtitle">私たちのミッション</span>
+        </h2>
+        
+        <div class="mission">
+          <p class="mission-en">
+            CyberMate supports producing scientific ecosystem in the SDGs world with looking beyond, 
+            the Open Science to Leverage Scientific Knowledge and Publishing Technology.
+          </p>
+          <p class="mission-ja">
+            学術出版が創るオープンサイエンスの世界に広がる持続可能な学術情報流通エコシステムの実現を目指し、
+            科学の知識と技術の活用を意とする仲間CyberMateと共に、その実現をお手伝いします。
+          </p>
+        </div>
+        
+        <div class="team grid grid-3">
+          {teamMembers.map((member) => (
+            <div class="team-member card">
+              <img src={member.image} alt={member.name} />
+              <h4>{member.name} | {member.nameEn}</h4>
+              <p>{member.role}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Partnership Section -->
+    <section id="partnership" class="section partnership-section">
+      <div class="container">
+        <h2 class="section-title">
+          CyberMate Partnership
+          <span class="section-subtitle">私たちが信頼し、連携する国内外パートナー</span>
+        </h2>
+        
+        <div class="partnership-intro">
+          <p class="en">We bridge existed IT experts and user stories for scholarly communications.</p>
+          <p class="ja">国内外の学術情報発信・流通のエキスパートとのパートナーシップを通して、運用と利用の実践を支援します。</p>
+        </div>
+        
+        <div class="partners grid grid-3">
+          {partners.map((partner) => (
+            <div class="partner card">
+              <img src={partner.image} alt={partner.name} />
+              <h4>{partner.name}</h4>
+              <p class="org">{partner.org}</p>
+              <p class="role">{partner.role}</p>
+              <p class="desc">{partner.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Profile Section -->
+    <section id="profile" class="section profile-section">
+      <div class="container">
+        <h2 class="section-title">
+          CyberMate Profile
+          <span class="section-subtitle">企業情報</span>
+        </h2>
+        
+        <div class="profile-table">
+          <table>
+            <tr>
+              <th>社名</th>
+              <td>CyberMate合同会社（サイバーメイトゴウドウカイシャ）</td>
+            </tr>
+            <tr>
+              <th>ドメイン名</th>
+              <td>www.cybermate.cloud</td>
+            </tr>
+            <tr>
+              <th>事業内容</th>
+              <td>
+                (1)オープンサイエンス推進に関わる学会、図書館支援業務<br />
+                (2)学術誌のオープンアクセスを支援する業務<br />
+                (3)学術誌の刊行を支援する業務<br />
+                (4)データサイエンスと融合する学術情報活用の支援業務<br />
+                (5)前各号に附帯関連する一切の事業
+              </td>
+            </tr>
+            <tr>
+              <th>所在地</th>
+              <td>東京都文京区本郷7-2-2本郷MTビル４階</td>
+            </tr>
+            <tr>
+              <th>資本金</th>
+              <td>3,100,000円</td>
+            </tr>
+            <tr>
+              <th>代表者</th>
+              <td>小野 成志</td>
+            </tr>
+            <tr>
+              <th>お問い合わせ</th>
+              <td>下記 Contact フォームをご利用ください。</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <h2 class="section-title">
+          Contact
+          <span class="section-subtitle">お問い合わせ</span>
+        </h2>
+        
+        <div class="contact-form-wrapper">
+          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-group">
+              <label for="name">お名前（必須）</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">メールアドレス（必須）</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">題名</label>
+              <input type="text" id="subject" name="subject" />
+            </div>
+            <div class="form-group">
+              <label for="message">メッセージ本文</label>
+              <textarea id="message" name="message" rows="6"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">送信</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    padding-top: calc(var(--header-height) + var(--spacing-lg));
+    padding-bottom: var(--spacing-lg);
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  }
+  
+  .hero-content {
+    text-align: center;
+  }
+  
+  .hero-image {
+    max-width: 600px;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .hero-text {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--color-text);
+  }
+  
+  /* Proposals */
+  .proposals-section {
+    background: var(--color-bg);
+  }
+  
+  .proposal-item {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    align-items: center;
+  }
+  
+  .proposal-item.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .proposal-content {
+    flex: 1;
+  }
+  
+  .proposal-num {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .proposal-subtitle {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .proposal-detail h4 {
+    color: var(--color-accent);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .proposal-image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .proposal-image img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  /* About Us */
+  .aboutus-section {
+    background: var(--color-bg-alt);
+  }
+  
+  .mission {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-lg);
+    text-align: center;
+  }
+  
+  .mission-en {
+    font-style: italic;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .team-member {
+    text-align: center;
+  }
+  
+  .team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .team-member h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .team-member p {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+  }
+  
+  /* Partnership */
+  .partnership-section {
+    background: var(--color-bg);
+  }
+  
+  .partnership-intro {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .partnership-intro .en {
+    font-style: italic;
+    color: var(--color-primary);
+  }
+  
+  .partner {
+    text-align: center;
+  }
+  
+  .partner img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .partner .org {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+  
+  .partner .role {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+  
+  .partner .desc {
+    font-size: 0.85rem;
+    margin-top: var(--spacing-xs);
+  }
+  
+  /* Profile */
+  .profile-section {
+    background: var(--color-bg-alt);
+  }
+  
+  .profile-table {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .profile-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .profile-table th,
+  .profile-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+  }
+  
+  .profile-table th {
+    width: 150px;
+    background: var(--color-bg);
+    font-weight: 500;
+  }
+  
+  /* Contact */
+  .contact-section {
+    background: var(--color-bg);
+  }
+  
+  .contact-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(56, 178, 172, 0.1);
+  }
+  
+  .contact-form button {
+    width: 100%;
+    margin-top: var(--spacing-sm);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-text {
+      font-size: 1rem;
+    }
+    
+    .hero-text br {
+      display: none;
+    }
+    
+    .proposal-item,
+    .proposal-item.reverse {
+      flex-direction: column;
+    }
+    
+    .profile-table th {
+      width: 100px;
+    }
+  }
+</style>

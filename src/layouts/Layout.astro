@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'CyberMate LLCは、学術情報流通サービスの企画・設計、開発支援をミッションとしています。' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>{title} | CyberMate LLC</title>
+</head>
+<body>
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

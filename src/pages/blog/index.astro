@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+// ブログ記事を取得
+// const posts = await Astro.glob('../blog/*.{md,mdx}');
+const posts = Object.values(
+  import.meta.glob('./*.{md,mdx}', { eager: true })
+) as any[];
+const sortedPosts = posts
+  .filter(post => !post.frontmatter.draft)
+  .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+---
+
+<Layout title="Blog">
+  <Header />
+  
+  <main class="blog-page">
+    <div class="container">
+      <h1 class="page-title">Blog</h1>
+      <p class="page-description">CyberMate LLCからのお知らせや、学術情報流通に関する記事を掲載しています。</p>
+      
+      {sortedPosts.length > 0 ? (
+        <div class="posts-grid">
+          {sortedPosts.map((post) => (
+            <article class="post-card card">
+              {post.frontmatter.image && (
+                <img src={post.frontmatter.image} alt={post.frontmatter.title} class="post-image" />
+              )}
+              <div class="post-content">
+                <time datetime={post.frontmatter.date}>
+                  {new Date(post.frontmatter.date).toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+                <h2><a href={post.url}>{post.frontmatter.title}</a></h2>
+                <p>{post.frontmatter.description}</p>
+                <a href={post.url} class="read-more">続きを読む →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="no-posts">
+          <p>まだ記事がありません。</p>
+        </div>
+      )}
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  .blog-page {
+    padding-top: calc(var(--header-height) + var(--spacing-lg));
+    padding-bottom: var(--spacing-xl);
+    min-height: 80vh;
+  }
+  
+  .page-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .page-description {
+    text-align: center;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .post-card {
+    overflow: hidden;
+    padding: 0;
+  }
+  
+  .post-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .post-content {
+    padding: var(--spacing-md);
+  }
+  
+  .post-content time {
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+  }
+  
+  .post-content h2 {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+  }
+  
+  .post-content h2 a {
+    color: var(--color-primary);
+  }
+  
+  .post-content h2 a:hover {
+    color: var(--color-accent);
+  }
+  
+  .post-content p {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+  }
+  
+  .read-more {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .no-posts {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--color-text-light);
+  }
+</style>
