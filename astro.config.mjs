@@ -3,7 +3,8 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://cybermate.cloud',
+  site: 'https://seishiono.github.io',
+  base: '/cybermate',
   integrations: [mdx()],
   output: 'static',
 });
