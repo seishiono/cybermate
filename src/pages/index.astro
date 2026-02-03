@@ -3,18 +3,20 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+const base = import.meta.env.BASE_URL;
+
 const teamMembers = [
-  { name: '小野 成志', nameEn: 'Seishi Ono', role: 'CEO', image: '/images/team/seishi-ono.png' },
-  { name: '笠間 和喜', nameEn: 'Kazuki Kasama', role: 'CFO / Services Strategist', image: '/images/team/kazuki-kasama.png' },
-  { name: '三澤有美', nameEn: 'Yumi Misawa', role: 'Admin & Customer Specialist', image: '/images/team/yumi-misawa.png' },
-  { name: '谷藤 幹子', nameEn: 'Mikiko Tanifuji', role: 'Research Advisor / Scholarly Publishing Specialist', image: '/images/team/mikiko-tanifuji.png' },
-  { name: 'ディーブ 冴', nameEn: 'Dieb Sae', role: 'Research Advisor / Data Scientist', image: '/images/team/dieb-sae.png' },
+  { name: '小野 成志', nameEn: 'Seishi Ono', role: 'CEO', image: `${base}/images/team/seishi-ono.png` },
+  { name: '笠間 和喜', nameEn: 'Kazuki Kasama', role: 'CFO / Services Strategist', image: `${base}/images/team/kazuki-kasama.png` },
+  { name: '三澤有美', nameEn: 'Yumi Misawa', role: 'Admin & Customer Specialist', image: `${base}/images/team/yumi-misawa.png` },
+  { name: '谷藤 幹子', nameEn: 'Mikiko Tanifuji', role: 'Research Advisor / Scholarly Publishing Specialist', image: `${base}/images/team/mikiko-tanifuji.png` },
+  { name: 'ディーブ 冴', nameEn: 'Dieb Sae', role: 'Research Advisor / Data Scientist', image: `${base}/images/team/dieb-sae.png` },
 ];
 
 const partners = [
-  { name: 'Paul Walk', org: 'AntLeaf Ltd.', role: 'IT Consultant / Service Design Founder', desc: 'オープン・リポジトリの開発・実装経験が長いイギリスを拠点とするベンダー', image: '/images/partners/paul-walk.png' },
-  { name: 'Luca Foppiano', org: 'ScienciaLAB', role: 'AI Engineer / TDM, LLM', desc: '論文・特許の本文を対象とした言語処理からAI構築まで科学情報を扱うディベロッパー', image: '/images/partners/luca-foppiano.png' },
-  { name: '永井裕子', org: 'NPO ScholAgora', role: 'Learned Society Publisher', desc: 'SPARC Japanにより設立された日本の学術ジャーナル出版NPO法人, オンラインジャーナルのパイオニア', image: '/images/partners/yuko-nagai.png' },
+  { name: 'Paul Walk', org: 'AntLeaf Ltd.', role: 'IT Consultant / Service Design Founder', desc: 'オープン・リポジトリの開発・実装経験が長いイギリスを拠点とするベンダー', image: `${base}/images/partners/paul-walk.png` },
+  { name: 'Luca Foppiano', org: 'ScienciaLAB', role: 'AI Engineer / TDM, LLM', desc: '論文・特許の本文を対象とした言語処理からAI構築まで科学情報を扱うディベロッパー', image: `${base}/images/partners/luca-foppiano.png` },
+  { name: '永井裕子', org: 'NPO ScholAgora', role: 'Learned Society Publisher', desc: 'SPARC Japanにより設立された日本の学術ジャーナル出版NPO法人, オンラインジャーナルのパイオニア', image: `${base}/images/partners/yuko-nagai.png` },
 ];
 
 const proposals = [
@@ -24,7 +26,7 @@ const proposals = [
     subtitle: '出版社や著者との契約・規約をサポートする',
     proposal: 'ジャーナルや学会誌の掲載論文を、研究利用のためにデータ購入したいときの出版社や学会との利用ライセンス、図書館でのライセンス契約や転換後のポートフォリオ分析の実現に向けて調査、調整、交渉のお手伝をします。',
     usage: '学会ジャーナルを刊行する際の販売モデル、図書館での購読モデル、研究者の研究費負担を、論文出版費用(Article Processing Charges)の負担によって目指す完全オープンアクセスの学術情報流通の世界を会員制セミナーを通じて一緒に考えませんか。',
-    image: '/images/proposals/pic3.png',
+    image: `${base}/images/proposals/pic3.png`,
   },
   {
     num: 2,
@@ -32,7 +34,7 @@ const proposals = [
     subtitle: 'オープンデータを使って人の繋がりを可視化する',
     proposal: '学会誌に掲載した論文から論文作者や要旨を対象に、大規模自然言語処理のアルゴリズムを適用して研究トピックスを抽出し、著者と紐づけ、ほか論文間の繋がりから著者ネットワークを作ります。',
     usage: '学会や研究会を主宰する時、学会会員の最近研究や学会誌記事を出典として自然言語処理により作成されたプロフィールから探す機能を開発支援します。',
-    image: '/images/proposals/pic1.png',
+    image: `${base}/images/proposals/pic1.png`,
   },
   {
     num: 3,
@@ -40,7 +42,7 @@ const proposals = [
     subtitle: 'オープンアクセス化を支援する',
     proposal: '論文や研究データの公開からリポジトリ出版まで、"公開する"ことのノウハウをコンサルティングします。例）大学や企業での紀要や定期レポートの出版ノウハウ　例）学会に若手が参加して繋がるオープンプラットフォーム',
     usage: '出版費用(Article Processing Charges)の拠出を定量的にみることができます。',
-    image: '/images/proposals/pic2.png',
+    image: `${base}/images/proposals/pic2.png`,
   },
 ];
 ---
@@ -53,7 +55,7 @@ const proposals = [
     <section id="home" class="hero">
       <div class="container">
         <div class="hero-content">
-          <img src="/images/firstimg.png" alt="CyberMate" class="hero-image" />
+          <img src={`${base}/images/firstimg.png`} alt="CyberMate" class="hero-image" />
           <p class="hero-text">
             CyberMate LLCは、日本の学術界において日進月歩に深化するウェブサービスを活用して、<br />
             次世代へ向かうアイデアを取り込んだ学術情報流通サービスの企画・設計、開発支援をミッションとしています。<br />

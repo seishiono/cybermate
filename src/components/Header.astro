@@ -1,29 +1,20 @@
 ---
 const base = import.meta.env.BASE_URL;
 const navItems = [
-  { href: `${base}#home`, label: 'Home' },
-  { href: `${base}#ourproposals`, label: 'Our proposals' },
-  { href: `${base}#aboutus`, label: 'About us' },
-  { href: `${base}#partnership`, label: 'Partnership' },
-  { href: `${base}#profile`, label: 'Profile' },
-  { href: `${base}blog`, label: 'Blog' },
-  { href: `${base}#contact`, label: 'Contact' },
+  { href: `${base}/#home`, label: 'Home' },
+  { href: `${base}/#ourproposals`, label: 'Our proposals' },
+  { href: `${base}/#aboutus`, label: 'About us' },
+  { href: `${base}/#partnership`, label: 'Partnership' },
+  { href: `${base}/#profile`, label: 'Profile' },
+  { href: `${base}/blog/`, label: 'Blog' },
+  { href: `${base}/#contact`, label: 'Contact' },
 ];
-//const navItems = [
-//  { href: '/#home', label: 'Home' },
-//  { href: '/#ourproposals', label: 'Our proposals' },
-//  { href: '/#aboutus', label: 'About us' },
-//  { href: '/#partnership', label: 'Partnership' },
-//  { href: '/#profile', label: 'Profile' },
-//  { href: '/blog', label: 'Blog' },
-//  { href: '/#contact', label: 'Contact' },
-//];
 ---
 
 <header class="header">
   <div class="container header-inner">
-    <a href="/" class="logo">
-      <img src="/images/logo.png" alt="CyberMate LLC" />
+    <a href={base} class="logo">
+      <img src={`${base}/images/logo.png`} alt="CyberMate LLC" />
     </a>
     
     <button class="mobile-toggle" aria-label="メニューを開く">

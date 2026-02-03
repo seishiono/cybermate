@@ -3,11 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
+const base = import.meta.env.BASE_URL;
+
 // ブログ記事を取得
-// const posts = await Astro.glob('../blog/*.{md,mdx}');
-const posts = Object.values(
-  import.meta.glob('./*.{md,mdx}', { eager: true })
-) as any[];
+const allPosts = import.meta.glob('./*.md', { eager: true });
+const posts = Object.values(allPosts) as any[];
 const sortedPosts = posts
   .filter(post => !post.frontmatter.draft)
   .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
@@ -23,25 +23,33 @@ const sortedPosts = posts
       
       {sortedPosts.length > 0 ? (
         <div class="posts-grid">
-          {sortedPosts.map((post) => (
-            <article class="post-card card">
-              {post.frontmatter.image && (
-                <img src={post.frontmatter.image} alt={post.frontmatter.title} class="post-image" />
-              )}
-              <div class="post-content">
-                <time datetime={post.frontmatter.date}>
-                  {new Date(post.frontmatter.date).toLocaleDateString('ja-JP', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </time>
-                <h2><a href={post.url}>{post.frontmatter.title}</a></h2>
-                <p>{post.frontmatter.description}</p>
-                <a href={post.url} class="read-more">続きを読む →</a>
-              </div>
-            </article>
-          ))}
+          {sortedPosts.map((post) => {
+            const slug = post.file.split('/').pop()?.replace('.md', '');
+            const imageUrl = post.frontmatter.image 
+              ? (post.frontmatter.image.startsWith('/') 
+                ? `${base}${post.frontmatter.image.slice(1)}` 
+                : post.frontmatter.image)
+              : null;
+            return (
+              <article class="post-card card">
+                {imageUrl && (
+                  <img src={imageUrl} alt={post.frontmatter.title} class="post-image" />
+                )}
+                <div class="post-content">
+                  <time datetime={post.frontmatter.date}>
+                    {new Date(post.frontmatter.date).toLocaleDateString('ja-JP', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                  <h2><a href={`${base}/blog/${slug}/`}>{post.frontmatter.title}</a></h2>
+                  <p>{post.frontmatter.description}</p>
+                  <a href={`${base}/blog/${slug}/`} class="read-more">続きを読む →</a>
+                </div>
+              </article>
+            );
+          })}
         </div>
       ) : (
         <div class="no-posts">
